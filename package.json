@@ -1,0 +1,25 @@
+{
+  "name": "strategy-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "ant-design-vue": "^3.2.20",
+    "qiankun": "^2.10.16",
+    "vue": "^3.5.18",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.6.2",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.8.3",
+    "vite": "^4.5.3",
+    "vue-tsc": "^3.0.5",
+    "sass": "^1.49.9"
+  }
+}
