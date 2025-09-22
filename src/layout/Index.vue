@@ -12,7 +12,7 @@
           <GithubOutlined />
           <span class="text" v-if="!collapsed">GG Bond</span>
         </div>
-        <SiderMenu />
+        <SiderMenu :collapsed="collapsed"/>
 
         <div class="setting">
           <a-button
@@ -33,14 +33,22 @@
       <a-layout-content
         style="margin: 16px; padding: 24px; background: #fff; min-height: 280px"
       >
+         <!-- 主应用内容 -->
         <router-view />
+        
+        <!-- 子应用容器 -->
+        <div 
+          id="micro-app-container" 
+          style="width: 100%; height: 100%"
+        />
+
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import SiderMenu from "@/layout/components/SiderMenu.vue";
 import {
   MenuUnfoldOutlined,
@@ -52,6 +60,16 @@ import { useRoute, useRouter } from "vue-router";
 const collapsed = ref(false);
 const router = useRouter();
 const route = useRoute();
+
+const isStrategyRoute = ref(route.path.startsWith('/strategy'));
+
+// 监听路由变化，判断是否为子应用路由
+watch(
+  () => route.path,
+  (newPath) => {
+    isStrategyRoute.value = newPath.startsWith('/strategy');
+  }
+);
 
 const getName = () => { 
     return router.getRoutes().find(r =>
